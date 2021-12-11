@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Success from "./success/success";
+import Error from "./error/error";
+import QRscanner from "./qrscanner/QRscanner";
+import Landing from "./landing";
+import RuR from "./users/rur";
+import Milkbag from "./users/milkbag";
+import Goa from "./users/goa";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<Landing />} />
+
+        <Route exact path="/scanner" element={<QRscanner />} />
+
+        <Route exact path="/success" element={<Success />} />
+
+        <Route exact path="/error" element={<Error />} />
+
+        <Route exact path="/rur" element={<RuR />} />
+
+        <Route exact path="/milkbag" element={<Milkbag />} />
+
+        <Route exact path="/goa" element={<Goa />} />
+      </Routes>
+    </Router>
   );
 }
-
-export default App;
