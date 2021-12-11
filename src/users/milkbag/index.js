@@ -24,7 +24,7 @@ const Milkbag = () => {
       default:
         break;
     }
-  });
+  }, [state?.data, binlocation]);
 
   const [selectedOption, setselectedOption] = useState("none");
   const navigate = useNavigate();
