@@ -3,22 +3,35 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const Milkbag = () => {
   const { state } = useLocation();
+
+  // const user = state?.data?.split(",")[0];
   const [binId, setbinId] = useState(state?.data?.split(",")[1]);
   const [binlocation, setbinlocation] = useState(state?.data?.split(",")[2]);
   const [device, setdevice] = useState("");
+  const [token, settoken] = useState("");
 
   useEffect(() => {
     setbinId(state?.data?.split(",")[1]);
     setbinlocation(state?.data?.split(",")[2]);
     switch (binlocation) {
       case "cuffparade":
-        setdevice("mbp_cuffparade_qr");
+        setdevice("MBP"); //("mbp_cuffparade_qr");
+        settoken(
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJEZXZpY2VDYWxsYmFja19NQlAiLCJzdnIiOiJ6YXJndW5lcy5hd3MudGhpbmdlci5pbyIsInVzciI6Inphcmd1bmVzIn0.W7NQz76QwHjxFOSmD0F99l8-0LtSVWsiMUA27MJnl5Q"
+        );
         break;
       case "prabhadevi":
         setdevice("mbp_prabhadevi_qr");
+        settoken(
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJEZXZpY2VDYWxsYmFja19wcmFiaGFkZXZpX3FyIiwic3ZyIjoiemFyZ3VuZXMuYXdzLnRoaW5nZXIuaW8iLCJ1c3IiOiJ6YXJndW5lcyJ9._3_18_ehjPQGoPKF8gJ94Tuiq-6KAp-NgzFhArfQyWA"
+        );
+
         break;
       case "dadar":
         setdevice("mbp_dadar_qr");
+        settoken(
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJEZXZpY2VDYWxsYmFja19wcmFiaGFkZXZpX3FyIiwic3ZyIjoiemFyZ3VuZXMuYXdzLnRoaW5nZXIuaW8iLCJ1c3IiOiJ6YXJndW5lcyJ9._3_18_ehjPQGoPKF8gJ94Tuiq-6KAp-NgzFhArfQyWA"
+        );
         break;
 
       default:
@@ -41,8 +54,7 @@ const Milkbag = () => {
 
   const sendData = () => {
     const url = `https://zargunes.aws.thinger.io/v3/users/zargunes/devices/${device}/callback/data`;
-    const key =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJEZXZpY2VDYWxsYmFja19iYW5kcmFfcXIiLCJzdnIiOiJ6YXJndW5lcy5hd3MudGhpbmdlci5pbyIsInVzciI6Inphcmd1bmVzIn0.7d1aa_mK_AQvJGz9S2zINC4A9oo6_Y0q0GI2KYYRIGk";
+    const key = `Bearer ${token}`;
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json;charset=UTF-8");

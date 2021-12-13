@@ -65,7 +65,7 @@ const QRscanner = () => {
         onError={handleError}
         onScan={handleScan}
         // chooseDeviceId={()=>selected}
-        style={{ width: "200px", heigth: "100px" }}
+        style={{ width: "300px", heigth: "200px" }}
       />
     </div>
   ) : (
